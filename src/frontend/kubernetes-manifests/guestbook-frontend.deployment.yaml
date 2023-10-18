@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: asia-east1-docker.pkg.dev/${PROJECT_ID}/my-repo/python-guestbook-frontend:latest
+        image: asia-east1-docker.pkg.dev/qwiklabs-gcp-04-da716bbf002b/my-repo/python-guestbook-frontend
         ports:
         - name: http-server
           containerPort: 8080
