@@ -2,7 +2,7 @@
 export LOCUST_IMAGE_NAME=locust-tasks
 export LOCUST_IMAGE_TAG=latest
 export GKE_CLUSTER=gke-lt-cluster
-export PROJECT="qwiklabs-gcp-01-f34de583ef94"
+export PROJECT="qwiklabs-gcp-04-da716bbf002b"
 export AR_REPO=my-repo
 export REGION=asia-east1
 export SAMPLE_APP_TARGET="http://python-guestbook-frontend.default.svc"
