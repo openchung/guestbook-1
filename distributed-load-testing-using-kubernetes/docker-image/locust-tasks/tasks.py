@@ -14,33 +14,45 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from locust import HttpUser, task, between, events
+import random
 
-import uuid
-
-from datetime import datetime
-from locust import FastHttpUser, TaskSet, task
-
-
-# [START locust_test_task]
-
-class MetricsTaskSet(TaskSet):
-    _deviceid = None
-
-    def on_start(self):
-        self._deviceid = str(uuid.uuid4())
+class QuickstartUser(HttpUser):
+    wait_time = between(1, 5)
 
     @task(1)
-    def login(self):
-        self.client.post(
-            '/login', {"deviceid": self._deviceid})
+    def get(self):
+        self.client.get("/")
+    @task(1)
+    def titles(self):
+        num = random.randint(1, 5)
+        self.client.post("/post", data={"name": "sweet heart", "message": f"test message {num}"})
+# import uuid
 
-    @task(999)
-    def post_metrics(self):
-        self.client.post(
-            "/metrics", {"deviceid": self._deviceid, "timestamp": datetime.now()})
+# from datetime import datetime
+# from locust import FastHttpUser, TaskSet, task
 
 
-class MetricsLocust(FastHttpUser):
-    tasks = {MetricsTaskSet}
+# # [START locust_test_task]
+
+# class MetricsTaskSet(TaskSet):
+#     _deviceid = None
+
+#     def on_start(self):
+#         self._deviceid = str(uuid.uuid4())
+
+#     @task(1)
+#     def login(self):
+#         self.client.post(
+#             '/login', {"deviceid": self._deviceid})
+
+#     @task(999)
+#     def post_metrics(self):
+#         self.client.post(
+#             "/metrics", {"deviceid": self._deviceid, "timestamp": datetime.now()})
+
+
+# class MetricsLocust(FastHttpUser):
+#     tasks = {MetricsTaskSet}
 
 # [END locust_test_task]

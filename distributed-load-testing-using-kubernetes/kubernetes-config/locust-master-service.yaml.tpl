@@ -36,8 +36,6 @@ kind: Service
 apiVersion: v1
 metadata:
   name: locust-master-web
-  annotations:
-    networking.gke.io/load-balancer-type: "Internal"
   labels:
     app: locust-master
 spec:
